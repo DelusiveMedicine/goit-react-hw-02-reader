@@ -36,7 +36,12 @@ class Reader extends Component {
     const pageNumber = articleIndex + 1;
     return (
       <div className={reader}>
-        <Controls showNext={this.showNext} showPrev={this.showPrev} />
+        <Controls
+          disabledPrev={!articleIndex}
+          disabledNext={articleIndex === items.length - 1}
+          showNext={this.showNext}
+          showPrev={this.showPrev}
+        />
         <Counter article={pageNumber} allArticles={items.length} />
         <Publication pageNumber={pageNumber} article={targetArticle} />
       </div>

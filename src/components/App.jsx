@@ -1,5 +1,5 @@
 import React from 'react';
-import Reader from './Reader';
+import Reader from './Reader/Reader';
 import publications from './Reader/publications';
 
 const App = () => {

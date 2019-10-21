@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Reader.module.css';
-import Controls from '../Controls';
-import Counter from '../Counter';
+import Controls from '../Controls/Controls';
+import Counter from '../Counter/Counter';
+import Publication from '../Publication/Publication';
 
 class Reader extends Component {
   state = {
@@ -31,10 +32,13 @@ class Reader extends Component {
     const { items } = this.props;
     const { reader } = styles;
     const { articleIndex } = this.state;
+    const targetArticle = items[articleIndex];
+    const pageNumber = articleIndex + 1;
     return (
       <div className={reader}>
         <Controls showNext={this.showNext} showPrev={this.showPrev} />
-        <Counter article={articleIndex + 1} allArticles={items.length} />
+        <Counter article={pageNumber} allArticles={items.length} />
+        <Publication pageNumber={pageNumber} article={targetArticle} />
       </div>
     );
   }

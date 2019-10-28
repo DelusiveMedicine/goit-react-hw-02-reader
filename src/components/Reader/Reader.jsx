@@ -11,18 +11,15 @@ class Reader extends Component {
     articleIndex: 0,
   };
 
-  showNext = () => {
+  handleClick = ({ target }) => {
+    const { dataset } = target;
     const { items } = this.props;
     const { articleIndex } = this.state;
-    if (articleIndex + 1 < items.length)
+    if (dataset.name === 'next' && articleIndex + 1 < items.length)
       this.setState(prevState => ({
         articleIndex: prevState.articleIndex + 1,
       }));
-  };
-
-  showPrev = () => {
-    const { articleIndex } = this.state;
-    if (articleIndex)
+    if (dataset.name === 'prev' && articleIndex)
       this.setState(prevState => ({
         articleIndex: prevState.articleIndex - 1,
       }));
@@ -39,8 +36,7 @@ class Reader extends Component {
         <Controls
           disabledPrev={!articleIndex}
           disabledNext={articleIndex === items.length - 1}
-          showNext={this.showNext}
-          showPrev={this.showPrev}
+          handleClick={this.handleClick}
         />
         <Counter article={pageNumber} allArticles={items.length} />
         <Publication pageNumber={pageNumber} article={targetArticle} />

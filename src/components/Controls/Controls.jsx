@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Controls.module.css';
 
-const Controls = ({ showNext, showPrev, disabledPrev, disabledNext }) => {
+const Controls = ({ handleClick, disabledPrev, disabledNext }) => {
   const { controls, button } = styles;
   return (
     <section className={controls}>
@@ -10,7 +10,8 @@ const Controls = ({ showNext, showPrev, disabledPrev, disabledNext }) => {
         type="button"
         disabled={disabledPrev}
         className={button}
-        onClick={showPrev}
+        onClick={handleClick}
+        data-name="prev"
       >
         Назад
       </button>
@@ -18,7 +19,8 @@ const Controls = ({ showNext, showPrev, disabledPrev, disabledNext }) => {
         type="button"
         disabled={disabledNext}
         className={button}
-        onClick={showNext}
+        onClick={handleClick}
+        data-name="next"
       >
         Вперед
       </button>
@@ -32,8 +34,7 @@ Controls.defaultProps = {
 };
 
 Controls.propTypes = {
-  showNext: PropTypes.func.isRequired,
-  showPrev: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
   disabledPrev: PropTypes.bool,
   disabledNext: PropTypes.bool,
 };

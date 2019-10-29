@@ -13,16 +13,12 @@ class Reader extends Component {
 
   handleClick = ({ target }) => {
     const { dataset } = target;
-    const { items } = this.props;
-    const { articleIndex } = this.state;
-    if (dataset.name === 'next' && articleIndex + 1 < items.length)
-      this.setState(prevState => ({
-        articleIndex: prevState.articleIndex + 1,
-      }));
-    if (dataset.name === 'prev' && articleIndex)
-      this.setState(prevState => ({
-        articleIndex: prevState.articleIndex - 1,
-      }));
+    this.setState(prevState => ({
+      articleIndex:
+        dataset.name === 'next'
+          ? prevState.articleIndex + 1
+          : prevState.articleIndex - 1,
+    }));
   };
 
   render() {
